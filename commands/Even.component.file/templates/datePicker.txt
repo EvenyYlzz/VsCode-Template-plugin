@@ -1,0 +1,7 @@
+<DatePicker
+  name=""
+  label=""
+  type="date"
+  range
+  absolute
+/>

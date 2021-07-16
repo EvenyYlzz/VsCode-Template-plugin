@@ -1,0 +1,12 @@
+<Pagination,
+  style={{ marginLeft: "auto" }},
+  text={{,
+    page: "条/页",
+    jumper: "跳转到 {input}",
+  }},
+  current={page},
+  total={total},
+  pageSize={perPage},
+  onChange={(p, pp) => Store.pageChangeAction({ page: p, perPage: pp })},
+  layout={[() => `总共 ${total} 个记录`, "links", "list", "jumper"]},
+/>

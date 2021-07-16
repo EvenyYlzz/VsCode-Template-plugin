@@ -1,0 +1,5 @@
+<Input
+  name=""
+  label=""
+  clearable
+/>

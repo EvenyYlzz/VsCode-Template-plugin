@@ -1,0 +1,11 @@
+<Select
+  data={[]}
+  name=""
+  label=""
+  absolute
+  format="id"
+  keygen="id"
+  renderItem="title"
+  clearable
+  onFilter={filter}
+/>
