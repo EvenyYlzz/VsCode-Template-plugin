@@ -16,6 +16,53 @@ const ast = parse(code, {
   sourceType: 'module',
 })
 
+const node = t.ObjectMethod(
+  'method',
+  t.Identifier('* pageChangeAction'),
+  [ t.ArrayPattern(
+      [t.Identifier('page'), t.Identifier('size')]
+    )
+  ],
+  
+    t.BlockStatement(
+      [
+        // t.ExpressionStatement(
+        //   t.YieldExpression(
+        //     t.isExpression(
+        //       t.StringLiteral("''")
+        //       // t.identifier('console.log'),
+        //       // [t.identifier('arg1')]
+        //     )
+        //   )
+        // ),
+        t.ExpressionStatement(
+          t.AssignmentExpression(
+            '=',
+            t.MemberExpression(
+              t.MemberExpression(
+                t.MemberExpression(
+                  t.ThisExpression(),
+                  t.Identifier('state')
+                ),
+                t.Identifier('pageAreaData')
+              ),
+              t.Identifier('page')
+            ),
+            t.Identifier('page')
+          )
+        ),
+      ]
+    )
+  // t.blockStatement([
+  //   t.expressionStatement(
+  //       t.callExpression(
+  //           t.identifier('console.log'),
+  //           [t.identifier('arg1')]
+  //       )
+  //   )
+  // ])
+)
+console.log('node', node);
 
 // const getNode = template(`* pageChangeAction([page, size]) {
 //   yield '';
@@ -34,10 +81,10 @@ traverse(ast, {
     // console.log(temp);
     if (path.node.type === "ObjectProperty" && path.node.key.name === "$init") {
       console.log('找到这个节点了', path.node.key.name)
-      const node = t.importDeclaration(
-        [t.importDefaultSpecifier(t.identifier('A'))],
-        t.stringLiteral('a')
-      )
+      // const node = t.importDeclaration(
+      //   [t.importDefaultSpecifier(t.identifier('A'))],
+      //   t.stringLiteral('a')
+      // )
       path.insertAfter(node);
     }
     // console.log('path:', path);
@@ -64,16 +111,16 @@ traverse(ast, {
 //   },
 // })
 
-console.log(typeof (generate(ast).code))
+console.log(generate(ast).code)
 
 
-fs.writeFileSync('../reducer.js', generate(ast).code, function (error) {
-  console.log(error)
-  if (error) {
-    console.log('写入失败')
-  } else {
-    console.log('写入成功了')
-  }
-})
+// fs.writeFileSync('../reducer.js', generate(ast).code, function (error) {
+//   console.log(error)
+//   if (error) {
+//     console.log('写入失败')
+//   } else {
+//     console.log('写入成功了')
+//   }
+// })
 
 console.log('结束')
